@@ -1,0 +1,23 @@
+.lobby {
+	width: 100%;
+	height: 93vh;
+}
+
+.lobby .nickname {
+	font-size: xx-large;
+	font-style: italic;
+}
+
+.lobby .big {
+	font-size: x-large;
+}
+
+.lobby button.big {
+	font-size: larger;
+	width: 180px;
+}
+
+.lobby .center {
+	display: flex;
+	align-items: center;
+}

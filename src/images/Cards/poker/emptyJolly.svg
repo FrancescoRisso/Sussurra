@@ -1,0 +1,25 @@
+<svg width="240" height="336.00000000000006" xmlns="http://www.w3.org/2000/svg" class="card" face="1B" preserveAspectRatio="none">
+ <g>
+  <title>Layer 1</title>
+  <rect width="239" height="335" rx="12" ry="12" fill="#ffffff" stroke="black" id="svg_1" x="0.5" y="0.5"/>
+  <g id="svg_6">
+   <path stroke-width="3" id="svg_2" d="m29.51473,37.67975l8.76986,0l2.70995,-8.33133l2.70996,8.33133l8.76986,0l-7.09495,5.14899l2.7101,8.33133l-7.09495,-5.14913l-7.09495,5.14913l2.7101,-8.33133l-7.09495,-5.14899l-0.00001,0l-0.00002,0z" fill="#ff0000" stroke="#ff0000"/>
+   <ellipse fill-opacity="0" ry="16.39415" rx="16.39415" id="svg_4" cy="41.39415" cx="40.92981" stroke-width="3" fill="#bf2828" stroke="#ff0000"/>
+  </g>
+  <g id="svg_9">
+   <path stroke-width="3" id="svg_7" d="m186.97906,37.67975l8.76986,0l2.70995,-8.33133l2.70996,8.33133l8.76986,0l-7.09495,5.14899l2.7101,8.33132l-7.09496,-5.14912l-7.09495,5.14912l2.7101,-8.33132l-7.09496,-5.14899l-0.00001,0z" fill="#ff0000" stroke="#ff0000"/>
+   <ellipse fill-opacity="0" ry="16.39415" rx="16.39415" id="svg_8" cy="41.39415" cx="198.39415" stroke-width="3" fill="#bf2828" stroke="#ff0000"/>
+  </g>
+  <g id="svg_12">
+   <path stroke-width="3" id="svg_10" d="m29.51473,293.26027l8.76986,0l2.70995,-8.33133l2.70996,8.33133l8.76986,0l-7.09495,5.14899l2.7101,8.33132l-7.09496,-5.14912l-7.09495,5.14912l2.7101,-8.33132l-7.09496,-5.14899l-0.00001,0z" fill="#ff0000" stroke="#ff0000"/>
+   <ellipse fill-opacity="0" ry="16.39415" rx="16.39415" id="svg_11" cy="296.97467" cx="40.92981" stroke-width="3" fill="#bf2828" stroke="#ff0000"/>
+  </g>
+  <g id="svg_15">
+   <path stroke-width="3" id="svg_13" d="m186.88936,293.26027l8.76986,0l2.70995,-8.33133l2.70996,8.33133l8.76986,0l-7.09495,5.14899l2.7101,8.33132l-7.09496,-5.14912l-7.09495,5.14912l2.7101,-8.33132l-7.09496,-5.14899l-0.00001,0z" fill="#ff0000" stroke="#ff0000"/>
+   <ellipse fill-opacity="0" ry="16.39415" rx="16.39415" id="svg_14" cy="296.97467" cx="198.30444" stroke-width="3" fill="#bf2828" stroke="#ff0000"/>
+  </g>
+  <ellipse fill="#bf7070" fill-opacity="0" cx="119.72973" cy="168.27027" id="svg_17" rx="84.86515" ry="84.86515" stroke="#000000"/>
+  <ellipse stroke-width="2" fill="#bf7070" stroke="#000000" fill-opacity="0" cx="120" cy="168" id="svg_16" rx="79.73" ry="79.73"/>
+ </g>
+
+</svg>

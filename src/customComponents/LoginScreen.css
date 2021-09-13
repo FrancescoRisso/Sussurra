@@ -1,0 +1,45 @@
+.login {
+	height: 93vh;
+	width: 100%;
+}
+
+.login label{
+	width: 100%;
+}
+
+.login *:not(i:not(big)){
+	font-size: larger;
+}
+
+.login input.light{
+	outline: none;
+	border-color: var(--infoButtonColor);
+}
+
+.login input.dark{
+	outline: none;
+	border-color: var(--secondaryButtonColor);
+}
+
+.height-20{
+	width: 100%;
+	height: 20%;
+}
+
+.height-30{
+	width: 100%;
+	height: 30%;
+}
+
+.login .loginButton {
+	min-width: 110px;
+}
+
+.login .backToLoginButton {
+	min-width: 150px;
+}
+
+.login small{
+	min-width: 100%;
+	font-size: larger !important;
+}

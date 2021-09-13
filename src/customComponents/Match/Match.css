@@ -1,0 +1,271 @@
+#match * {
+	--cardPercentageWidth: 0.2;
+}
+
+#match {
+	position: relative;
+	height: 93vh;
+	width: 100%;
+}
+
+#match .carpet {
+	border-radius: 8vw;
+	width: 100%;
+	background-color: #0d9250;
+	opacity: 0.78;
+	padding-top: 65%;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#match .card {
+	border-radius: 5%;
+	width: 100%;
+	height: auto;
+	opacity: 1;
+}
+
+#match .player {
+	position: absolute;
+	width: 20%;
+	height: auto;
+	z-index: 1;
+}
+
+#match .player.pos-0,
+#match .player.pos-1,
+#match .player.pos-2 {
+	top: -10%;
+}
+
+#match .player.pos-0 {
+	left: 10%;
+}
+
+#match .player.pos-1 {
+	left: 40%;
+}
+
+#match .player.pos-2 {
+	left: 70%;
+}
+
+#match .player.pos-3,
+#match .player.pos-4,
+#match .player.pos-5 {
+	bottom: -10%;
+}
+
+#match .player.pos-3 {
+	left: 7.5%;
+}
+
+#match .player.pos-4 {
+	left: 35%;
+	width: 30% !important;
+}
+
+#match .player.pos-5 {
+	left: 72.5%;
+}
+
+#match .playercard {
+	width: 47%;
+	height: auto;
+	position: relative;
+	display: inline-block;
+}
+
+#match .click,
+#match .click * {
+	cursor: pointer;
+	pointer-events: auto;
+}
+
+#match .playercard.left {
+	margin-right: 6%;
+}
+
+#match .playercard.top.top-spaced {
+	margin-bottom: 13%;
+}
+
+#match .player p {
+	color: white;
+	text-align: center;
+}
+
+#match .player .placeholder {
+	min-height: 6%;
+}
+
+#match .deck,
+.discard {
+	transform: rotate(90deg);
+	position: absolute;
+	width: 10%;
+	height: auto;
+	top: 38.5%;
+	z-index: 1;
+}
+
+#match .deck {
+	left: 11%;
+}
+
+#match .discard {
+	right: 11%;
+}
+
+#playersturn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 50%;
+	height: 12%;
+	transform: translate(-50%, -50%);
+	align-items: center;
+	/*display: flex;*/
+	z-index: 2;
+	border-radius: 100px;
+}
+
+#playersturn small {
+	display: block;
+	text-align: center;
+	font-size: large;
+	color: var(--lightModeColor);
+}
+
+#playersturn.light {
+	box-shadow: 0px 0px 5vh 6vh var(--infoButtonColor);
+	background-color: var(--infoButtonColor);
+}
+
+#playersturn.dark {
+	box-shadow: 0px 0px 5vh 6vh var(--secondaryButtonColor);
+	background-color: var(--secondaryButtonColor);
+}
+
+#playersturn p {
+	color: var(--lightModeColor);
+	text-align: center;
+	width: 100%;
+	margin-bottom: 0;
+	font-size: xx-large;
+}
+
+#match .tips {
+	position: absolute;
+	top: 2vh;
+	width: 96%;
+	left: 2%;
+	z-index: 1;
+	background-color: #d9d9d9;
+	box-shadow: 0 0 1vh 1vh #d9d9d9;
+}
+
+#match .tips p {
+	color: var(--darkModeColor);
+	text-align: center;
+	margin-bottom: 0;
+}
+
+#match .stop {
+	z-index: 2;
+	position: fixed;
+	min-width: 140px;
+	bottom: 10px;
+}
+
+#match .stop.disabled {
+	cursor: not-allowed;
+}
+
+#match .stop.enabled {
+	cursor: pointer;
+}
+
+#match .results {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 50%;
+	height: 70%;
+	transform: translate(-50%, -50%);
+	align-items: center;
+	display: flex;
+	z-index: 2;
+	border-radius: 100px;
+}
+
+#match .results > * {
+	min-width: 100%;
+	text-align: center;
+}
+
+#match .results table {
+	font-size: large;
+	position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#match .results * {
+	color: var(--lightModeColor);
+}
+
+#match .results button * {
+	text-decoration: none;
+}
+
+#match .results.light {
+	box-shadow: 0px 0px 5vh 6vh var(--infoButtonColor);
+	background-color: var(--infoButtonColor);
+}
+
+#match .results.dark {
+	box-shadow: 0px 0px 5vh 6vh var(--secondaryButtonColor);
+	background-color: var(--secondaryButtonColor);
+}
+
+#match .nowPlaying {
+	position: fixed;
+	bottom: 10px;
+	z-index: 2;
+	width: auto;
+	margin-right: 200px;
+	margin-left: 200px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	opacity: 0.75;
+}
+
+#match .nowPlaying.light {
+	background-color: var(--infoButtonColor);
+}
+
+#match .nowPlaying.dark {
+	background-color: var(--secondaryButtonColor);
+}
+
+@media (max-width: 1200px) {
+	#match .nowPlaying {
+		left: 10%;
+		right: 10%;
+	}
+}
+
+@media (min-width: 1200px) {
+	#match .nowPlaying {
+		left: 20%;
+		right: 20%;
+	}
+}
+
+#match .nowPlaying * {
+	margin-bottom: 0;
+	text-align: center;
+	color: var(--lightModeColor);
+}

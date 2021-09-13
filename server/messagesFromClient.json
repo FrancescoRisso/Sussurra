@@ -1,0 +1,52 @@
+[
+	{
+		"type": "login",
+		"name": ""
+	},
+
+	{
+		"type": "ready"
+	},
+
+	{
+		"type": "notReady"
+	},
+
+	{
+		"type": "playerMove",
+		"what": "discard | playerSwitch | deckSwitch",
+		"data (case playerSwitch)": [
+			{
+				"player": 0,
+				"card": 0
+			},
+			{
+				"player": 0,
+				"card": 0
+			}
+		],
+		"data (case deckSwitch)": {
+			"player": "",
+			"card": 0
+		}
+	}, 
+
+	{
+		"type": "cardDiscard",
+		"player": "",
+		"card": 0
+	},
+
+	{
+		"type": "outOfCards"
+	},
+
+	{
+		"type": "stop"
+	},
+
+	{
+		"type": "reshuffle",
+		"deck": []
+	}
+]

@@ -1,0 +1,39 @@
+header h1 {
+	margin-bottom: 0;
+}
+
+header .flag {
+	border-style: solid;
+	border-width: thin;
+	height: 20px;
+}
+
+header .flag-dark{
+	border-color: var(--lightModeColor);
+}
+
+header .flag-light{
+	border-color: var(--darkModeColor);
+}
+
+header .sun {
+	height: 30px;
+}
+
+header.light {
+	background-color: #17a2b8 ;
+}
+
+header.dark {
+	background-color: #6c757d ;
+}
+
+header {
+	border-bottom-left-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+	height: 7vh;
+}
+
+header * {
+	color: var(--lightModeColor);
+}

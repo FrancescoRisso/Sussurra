@@ -1,0 +1,8 @@
+.dropdown .dropdownList {
+	position: absolute;
+	top: 40px;
+	left: -18px;
+	border-style: solid;
+	border-color: black;
+	z-index: 1;
+}
