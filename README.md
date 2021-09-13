@@ -1,3 +1,9 @@
+## Sussurra
+React-made website to play the game Sussurra
+You are currently in the original code branch, if you want to deploy the website please visit the build branch
+
+## React info
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
