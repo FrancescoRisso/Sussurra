@@ -41,6 +41,8 @@ import Lobby from "./customComponents/Lobby/Lobby";
 import { w3cwebsocket } from "websocket";
 import Match from "./customComponents/Match/Match";
 
+const websocketAddress = "ws://frisso.myqnapcloud.com:1111";
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -48,7 +50,7 @@ class App extends React.Component {
 		this.state = {
 			lang: "it",
 			darkMode: false,
-			websocket: new w3cwebsocket("ws://192.168.0.111:1111"),
+			websocket: new w3cwebsocket(websocketAddress),
 			myName: ""
 		};
 	}
@@ -79,10 +81,12 @@ class App extends React.Component {
 					changeLang: this.changeLang,
 					websocket: this.state.websocket,
 					reloadConn: () => {
-						this.setState({ websocket: new w3cwebsocket("ws://192.168.0.111:1111") });
+						this.setState({ websocket: new w3cwebsocket(websocketAddress) });
 					},
 					myName: this.state.myName,
-					setName: (name)=>{this.setState({myName: name})}
+					setName: (name) => {
+						this.setState({ myName: name });
+					}
 				}}
 			>
 				<Router>
