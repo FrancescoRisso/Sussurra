@@ -11,6 +11,9 @@
 # production
 /build
 
+# usless stuff
+~icons.pptx
+
 # misc
 .DS_Store
 .env.local
