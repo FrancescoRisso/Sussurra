@@ -67,7 +67,8 @@ export default [
 	"Maximum number of players (6) reached",
 	"Example: let's imagine that the player knows two of his cards, a 4 and a 7. The player draws from the deck a very high card, such as a Q. At this point, it is not convenient to replace a known card (a 4 or a 7) with the new one, because the total value of his cards would increase (please remember, the goal of the game is to minimize the total score). On the other side, it is not even convenient to replace one of the unknown cards, since the probability that these cards have a lower value than the drawn one is very high. Thus, in this case it is convenient to discard the drawn card.",
 	'Example: let\'s imagine that a player has just two cards left, an A and a 3, while all the other players have at least 3 cards. At this point, it is very likely that he is in the lead, so it is convenient for him to say "STOP". Beware though: the game does not end when someone says "STOP", so the situation can still change. For instance, another player could switch some cards (see below), thus completely reversing the situation.',
-	"At the end of the game, when the results are shown, in the bottom left corner you can find a button to hide the results, to see revealed all the cards from every player."
+	"At the end of the game, when the results are shown, in the bottom left corner you can find a button to hide the results, to see revealed all the cards from every player.",
+	"Match already in progress. Please wait for it to finish before entering."
 ];
 
 // Indice della frase è riga-2

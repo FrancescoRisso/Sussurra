@@ -67,7 +67,8 @@ export default [
 	"È stato raggiunto il limite massimo di giocatori (6)",
 	"Esempio: supponiamo che il giocatore conosca due delle sue carte, rispettivamente un 4 e un 7. Il giocatore pesca dal mazzo una carta con valore molto alto (ad es. Q). A questo punto non conviene rimpiazzare una carta conosciuta (ossia 4 oppure 7) con quella nuova, perché il valore delle sue carte aumenterà (ricorda: scopo del gioco è minimizzare il valore delle carte). D’altro canto, non conviene neanche rimpiazzare una delle due carte di cui non conosce il valore, perché la probabilità che queste due carte abbiano un valore migliore di quella pescata è molto alta. In questo caso, al giocatore conviene scartare la carta pescata.",
 	'Esempio. Supponiamo un giocatore rimanga con 2 carte, il cui valore è rispettivamente A e 3. Tutti gli altri giocatori hanno almeno 3 carte. A questo punto è molto probabile che, in quel momento, sia lui ad avere il punteggio migliore di tutti e pertanto è conveniente dire "STOP". Attenzione però: il giro non termina quando si dice "STOP", quindi la situazione può ancora cambiare. Ad esempio, un altro giocatore potrebbe scambiare delle carte (vedi sotto), ribaltando completamente la situazione.',
-	"Finito il gioco, quando viene mostrata la classifica, in basso a sinistra trovi un pulsante per nascondere la classifica e vedere scoperte tutte le carte di tutti i giocatori"
+	"Finito il gioco, quando viene mostrata la classifica, in basso a sinistra trovi un pulsante per nascondere la classifica e vedere scoperte tutte le carte di tutti i giocatori",
+	"La partita è in corso. Aspetta che finisca per poter entrare."
 ];
 
 // Indice della frase è riga-2

@@ -85,5 +85,13 @@
 	{
 		"type": "reshuffle",
 		"deck": []
+	},
+
+	{
+		"type": "loginAllowed"
+	},
+
+	{
+		"type": "loginNotAllowed"
 	}
 ]

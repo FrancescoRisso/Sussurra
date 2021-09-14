@@ -455,7 +455,7 @@ class Match extends React.Component {
 							this.state.playerCards[player][card].card !== "NN") || // La carta selezionata è una vera carta
 						// Scarto una carta da in mano
 						(this.state.discarded.length > 0 && // Ci sono carte scartate
-							this.state.playerCards[player][card].card.charAt(0) == this.state.discarded[0].charAt(0) && // La carta selezionata ha lo stesso numero dell'ultima scartata
+							this.state.playerCards[player][card].card.charAt(0) === this.state.discarded[0].charAt(0) && // La carta selezionata ha lo stesso numero dell'ultima scartata
 							this.state.playerCards[player][card].visible && // La carta selezionata è visibile
 							(this.state.playerPlaying !== this.context.myName || // Non tocca a me, oppure
 								(this.state.playerPlaying === this.context.myName && !this.state.deckCardVisible)) && // Tocca a me, ma non ho ancora pescato

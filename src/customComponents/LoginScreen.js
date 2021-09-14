@@ -8,6 +8,7 @@ state:
 	- namesList: the list of used nicknames
 	- goToLobby: set to true when login is successful, so the user should be redirected
 	- connClosed: set to true when connection to server is closed, so the user should be redirected
+	- loginAllowed: whether the login is allowed (thus no match is being played)
 	
 props:
 	- 
@@ -36,7 +37,7 @@ class LoginScreen extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { nickname: "", namesList: [], goToLobby: false, connClosed: false };
+		this.state = { nickname: "", namesList: [], goToLobby: false, connClosed: false, loginAllowed: true };
 	}
 
 	componentDidMount() {
@@ -80,6 +81,14 @@ class LoginScreen extends React.Component {
 					}
 					break;
 
+				case "loginNotAllowed":
+					this.setState({ loginAllowed: false });
+					break;
+
+				case "loginAllowed":
+					this.setState({ loginAllowed: true });
+					break;
+
 				default:
 					break;
 			}
@@ -92,12 +101,11 @@ class LoginScreen extends React.Component {
 		event.preventDefault();
 		const input = document.getElementById("nickname-input");
 		input.setCustomValidity("");
-		if (this.state.nickname !== "" && this.state.namesList.length < 6)
-			this.context.websocket.send(JSON.stringify({ type: "login", name: this.state.nickname }));
-		else {
-			input.setCustomValidity(dict(this.context.lang, this.state.nickname === "" ? 25 : 65));
-			input.reportValidity();
-		}
+		if (this.state.nickname === "") input.setCustomValidity(dict(this.context.lang, 25));
+		else if (this.state.namesList.length >= 6) input.setCustomValidity(dict(this.context.lang, 65));
+		else if (!this.state.loginAllowed) input.setCustomValidity(dict(this.context.lang, 69));
+		else this.context.websocket.send(JSON.stringify({ type: "login", name: this.state.nickname }));
+		input.reportValidity();
 	};
 
 	render() {
@@ -116,7 +124,7 @@ class LoginScreen extends React.Component {
 							id="nickname-input"
 							className={`text-center rounded-pill ${this.context.darkMode ? "dark" : "light"}`}
 							onChange={(event) => {
-								document.getElementById("nickname-input").setCustomValidity("")
+								document.getElementById("nickname-input").setCustomValidity("");
 								this.setState({ nickname: event.target.value });
 							}}
 							required={true}
