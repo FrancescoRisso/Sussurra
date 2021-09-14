@@ -16,8 +16,10 @@ const startGame = () => {
 	// Prepare deck and starting player
 	let deck = _.shuffle(cards);
 	let playersOrder = _.shuffle(Object.keys(players));
-	
+
 	log("START", `Starting game with players "${playersOrder.join('", "')}" (in order)`);
+
+	matchInProgress = true;
 
 	// Notify that game will start
 	Object.values(players).forEach((c) => c.send(JSON.stringify({ type: "startGame" })));
@@ -34,7 +36,7 @@ const playerReady = (name) => {
 	Object.values(players).forEach((c) => c.send(JSON.stringify({ type: "playerReady", name })));
 
 	// If all players ready, start game
-	if (Object.values(ready).filter((x) => !x).length == 0 && Object.values(ready).length >1) startGame();
+	if (Object.values(ready).filter((x) => !x).length == 0 && Object.values(ready).length > 1) startGame();
 	//if (Object.values(ready).filter((x) => !x).length == 0) startGame(); //1PLAYER games
 };
 
@@ -75,7 +77,7 @@ const login = (conn, msg) => {
 		setTimeout(() => {
 			conn.send(JSON.stringify({ type: "loggedPlayers", list: ready }));
 		}, 1);
-		
+
 		return msg.name;
 	} else {
 		log("REGISTER", `${conn._socket.remoteAddress} wanted name '${msg.name}' but was already given`);
@@ -146,14 +148,16 @@ const matchOver = () => {
 	log("FINISHED", "Match is over. Clearing the game room");
 	players = {};
 	ready = {};
+	matchInProgress = false;
 	loginPending.forEach((client) => client.send(JSON.stringify({ type: "clearLoggedUsers" })));
+	loginPending.forEach((client) => client.send(JSON.stringify({ type: "loginAllowed" })));
 };
 
-const reshuffle = (deck) =>{
-	log("RESHUFFLE", "Reshuffle deck")
+const reshuffle = (deck) => {
+	log("RESHUFFLE", "Reshuffle deck");
 	deck = _.shuffle(deck);
 	Object.values(players).forEach((c) => c.send(JSON.stringify({ type: "reshuffle", deck })));
-}
+};
 
 // ------------------------------------------------
 // CONSTANTS DEFINITION & SERVER STUFF
@@ -232,6 +236,8 @@ let players = {}; // { name: connection }
 let ready = {}; // { name: start } whether the player said they are ready to start
 let loginPending = []; // just list of connections
 
+let matchInProgress = false;
+
 // ------------------------------------------------
 // SERVER BEHAVIOUR
 // ------------------------------------------------
@@ -245,6 +251,9 @@ wss.on("connection", (conn) => {
 
 	// send the logged-in names to player
 	conn.send(JSON.stringify({ type: "playersList", list: Object.keys(players) }));
+
+	// If game is in progress, notify the user
+	if (matchInProgress) conn.send(JSON.stringify({ type: "loginNotAllowed" }));
 
 	conn.on("message", (data) => {
 		let msg = JSON.parse(data);
