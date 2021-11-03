@@ -318,6 +318,7 @@ class Match extends React.Component {
 					);
 					break;
 				case "outOfCards":
+					const matchOver = msg.player === this.state.playerPlaying;
 					this.setState(
 						{
 							lastPlayerToPlay: {
@@ -331,8 +332,31 @@ class Match extends React.Component {
 							setTimeout(() => {
 								this.setState((state) => {
 									state.lastPlayerToPlay.visible = false;
-									return { lastPlayerToPlay: state.lastPlayerToPlay };
+									return {
+										lastPlayerToPlay: state.lastPlayerToPlay,
+										matchOver,
+										playerPlayingVisible: matchOver
+									};
 								});
+
+								if (matchOver)
+									setTimeout(() => {
+										this.setState({ playerPlayingVisible: false, reshuffled: false }, () => {
+											setTimeout(() => {
+												if (this.state.firstPlayer === this.context.myName)
+													this.context.websocket.send(JSON.stringify({ type: "matchOver" }));
+												this.setState((state) => {
+													// Make all cards visible
+													state.playerCards = state.playerCards.map((player) =>
+														player.map((card) => {
+															return { card: card.card, visible: true };
+														})
+													);
+													return { showResults: true, playerCards: state.playerCards };
+												});
+											}, 2000);
+										});
+									}, 2000);
 							}, 2000);
 						}
 					);
@@ -628,7 +652,8 @@ class Match extends React.Component {
 	};
 
 	render() {
-		if (this.state.connClosed) return <Redirect to="/connClosed" push />;
+		if (this.state.connClosed) return <Redirect to="/connClosed" />;
+		if (this.context.myName === "") return <Redirect to="/error" />;
 		return (
 			<div id="match">
 				{this.state.showResults && !this.state.hideResults ? (

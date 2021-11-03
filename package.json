@@ -3,17 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^7.2.1",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "moment": "^2.29.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-inlinesvg": "^2.3.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^4.0.3",
     "react-websocket": "^2.1.0",
     "underscore": "^1.13.1",
-    "websocket": "^1.0.34"
+    "websocket": "^1.0.34",
+    "ws": "^8.2.3"
   },
   "scripts": {
     "start": "react-scripts start",

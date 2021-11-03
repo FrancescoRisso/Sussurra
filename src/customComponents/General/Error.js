@@ -6,6 +6,7 @@ description:
 state:
 	
 props:
+	- reason: the reason of the error (can be "connClosed" or "general")
 	
 functions:
 	
@@ -21,9 +22,9 @@ dependences:
 */
 
 import React from "react";
-import dict from "../Dictionary";
-import Settings from "./../SettingsContext";
-import "./LoginScreen.css";
+import dict from "../../Dictionary";
+import Settings from "../../SettingsContext";
+import "../LoginScreen.css";
 import { Link } from "react-router-dom";
 
 class ConnClosed extends React.Component {
@@ -39,7 +40,9 @@ class ConnClosed extends React.Component {
 				<div className="login">
 					<div className="placeHolder height-30"></div>
 					<div className="d-flex justify-content-center">
-						<small className="text-center mb-3">{dict(this.context.lang, 21)}</small>
+						<small className="text-center mb-3">
+							{dict(this.context.lang, this.props.reason === "connClosed" ? 21 : 70)}
+						</small>
 					</div>
 					<div className="d-flex justify-content-center">
 						<Link to="/login">
@@ -56,7 +59,9 @@ class ConnClosed extends React.Component {
 					<div className="d-flex justify-content-center">
 						<small className="text-center mb-3">{dict(this.context.lang, 23)}</small>
 					</div>
-					<p className="text-center"><i>{dict(this.context.lang, 24)}</i></p>
+					<p className="text-center">
+						<i>{dict(this.context.lang, 24)}</i>
+					</p>
 				</div>
 			</>
 		);

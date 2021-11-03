@@ -106,8 +106,8 @@ class Lobby extends React.Component {
 	}
 
 	render() {
-		if (this.state.connClosed) return <Redirect to="/connClosed" push />;
-		if (this.state.startGame) return <Redirect to="/match" push />;
+		if (this.state.connClosed) return <Redirect to="/connClosed" />;
+		if (this.state.startGame) return <Redirect to="/match" />;
 		if (this.context.myName === "") return <Redirect to="/error" />;
 		return (
 			<div className="lobby">

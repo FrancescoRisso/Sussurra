@@ -93,5 +93,10 @@
 
 	{
 		"type": "loginNotAllowed"
+	},
+
+	{
+		"type": "playerQuit",
+		"name": ""
 	}
 ]

@@ -23,7 +23,7 @@ dependences:
 	- TopBar
 	- Settings
 	- HowToPlay
-	- ConnClosed
+	- Error
 	- Lobby
 	- Match
 
@@ -36,12 +36,13 @@ import LoginScreen from "./customComponents/LoginScreen";
 import TopBar from "./customComponents/General/TopBar";
 import Settings from "./SettingsContext";
 import HowToPlay from "./customComponents/General/HowToPlay";
-import ConnClosed from "./customComponents/ConnClosed";
+import Error from "./customComponents/General/Error";
 import Lobby from "./customComponents/Lobby/Lobby";
 import { w3cwebsocket } from "websocket";
 import Match from "./customComponents/Match/Match";
 
-const websocketAddress = "ws://frisso.myqnapcloud.com:1111";
+//const websocketAddress = "ws://frisso.myqnapcloud.com:1111";
+const websocketAddress = "ws://localhost:1111";
 
 class App extends React.Component {
 	constructor(props) {
@@ -107,7 +108,11 @@ class App extends React.Component {
 							</Route>
 
 							<Route path="/connClosed">
-								<ConnClosed />
+								<Error reason="connClosed" />
+							</Route>
+
+							<Route path="/error">
+								<Error reason="general" />
 							</Route>
 
 							<Route path="/match">

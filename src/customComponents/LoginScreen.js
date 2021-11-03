@@ -66,6 +66,12 @@ class LoginScreen extends React.Component {
 					});
 					break;
 
+				case "playerQuit":
+					this.setState((state) => {
+						return { namesList: state.namesList.filter((p) => p.name !== msg.name) };
+					});
+					break;
+
 				case "loginAccepted":
 					this.context.setName(this.state.nickname);
 					this.setState({ goToLobby: true });
@@ -109,8 +115,8 @@ class LoginScreen extends React.Component {
 	};
 
 	render() {
-		if (this.state.goToLobby) return <Redirect to="/lobby" push />;
-		if (this.state.connClosed) return <Redirect to="/connClosed" push />;
+		if (this.state.goToLobby) return <Redirect to="/lobby" />;
+		if (this.state.connClosed) return <Redirect to="/connClosed" />;
 		return (
 			<div className="login">
 				<div className="placeHolder height-20"></div>
