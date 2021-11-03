@@ -37,7 +37,6 @@ const playerReady = (name) => {
 
 	// If all players ready, start game
 	if (Object.values(ready).filter((x) => !x).length == 0 && Object.values(ready).length > 1) startGame();
-	//if (Object.values(ready).filter((x) => !x).length == 0) startGame(); //1PLAYER games
 };
 
 const playerNotReady = (name) => {
@@ -90,15 +89,21 @@ const login = (conn, msg) => {
 
 const playerDisconection = (name, conn) => {
 	if (name !== null) {
-		log("DISCONN", `'${name}' disconnected: closing the room.`);
+		log("DISCONN", `'${name}' disconnected.`);
 
-		//Notify all pending users
-		loginPending.forEach((client) => client.send(JSON.stringify({ type: "clearLoggedUsers" })));
+		if (matchInProgress) resetRoom();
+		else {
+			//Delete player from all lists
+			delete players[name];
+			delete ready[name];
 
-		//Close connection to all logged users
-		Object.values(players).forEach((c) => c.close());
-		players = {};
-		ready = {};
+			//Notify all users
+			loginPending.forEach((client) => client.send(JSON.stringify({ type: "playerQuit", name })));
+			Object.values(players).forEach((client) => client.send(JSON.stringify({ type: "playerQuit", name })));
+
+			// If all players ready, start game
+			if (Object.values(ready).filter((x) => !x).length == 0 && Object.values(ready).length > 1) startGame();
+		}
 	} else {
 		log("DISCONN", `${conn._socket.remoteAddress} disconnected`);
 		loginPending.splice(loginPending.indexOf(conn));
@@ -157,6 +162,20 @@ const reshuffle = (deck) => {
 	log("RESHUFFLE", "Reshuffle deck");
 	deck = _.shuffle(deck);
 	Object.values(players).forEach((c) => c.send(JSON.stringify({ type: "reshuffle", deck })));
+};
+
+const resetRoom = () => {
+	log("CLOSE", "closing the room");
+
+	//Notify all pending users
+	loginPending.forEach((client) => client.send(JSON.stringify({ type: "clearLoggedUsers" })));
+
+	//Close connection to all logged users
+	Object.values(players).forEach((c) => c.close());
+	players = {};
+	ready = {};
+
+	matchInProgress = false;
 };
 
 // ------------------------------------------------
@@ -241,6 +260,10 @@ let matchInProgress = false;
 // ------------------------------------------------
 // SERVER BEHAVIOUR
 // ------------------------------------------------
+
+app.get("/resetRoom", (req, res) => {
+	resetRoom();
+});
 
 wss.on("connection", (conn) => {
 	log("CONN", `${conn._socket.remoteAddress} is connecting`);
