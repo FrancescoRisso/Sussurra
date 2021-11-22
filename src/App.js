@@ -26,6 +26,7 @@ dependences:
 	- Error
 	- Lobby
 	- Match
+	- ResetRoom
 
 */
 
@@ -38,8 +39,9 @@ import Settings from "./SettingsContext";
 import HowToPlay from "./customComponents/General/HowToPlay";
 import Error from "./customComponents/General/Error";
 import Lobby from "./customComponents/Lobby/Lobby";
-import { w3cwebsocket } from "websocket";
+import { connection, w3cwebsocket } from "websocket";
 import Match from "./customComponents/Match/Match";
+import ResetRoom from "./customComponents/ResetRoom";
 
 console.log(window.Config);
 const websocketAddress = window.ENV.webSocketAddress;
@@ -117,6 +119,10 @@ class App extends React.Component {
 
 							<Route path="/match">
 								<Match />
+							</Route>
+
+							<Route path="/resetRoom">
+								<ResetRoom />
 							</Route>
 						</Switch>
 					</div>

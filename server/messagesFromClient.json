@@ -48,5 +48,9 @@
 	{
 		"type": "reshuffle",
 		"deck": []
+	},
+
+	{
+		"type": "resetRoom"
 	}
 ]
