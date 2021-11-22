@@ -261,10 +261,6 @@ let matchInProgress = false;
 // SERVER BEHAVIOUR
 // ------------------------------------------------
 
-app.get("/resetRoom", (req, res) => {
-	resetRoom();
-});
-
 wss.on("connection", (conn) => {
 	log("CONN", `${conn._socket.remoteAddress} is connecting`);
 
@@ -315,6 +311,10 @@ wss.on("connection", (conn) => {
 
 			case "reshuffle":
 				reshuffle(msg.deck);
+				break;
+
+			case "resetRoom":
+				resetRoom();
 				break;
 		}
 	});
