@@ -83,3 +83,11 @@ Reload systemctl with `sudo systemctl daemon-reload`
 Activate your process with `sudo systemctl start sussurraServer.service`
 
 If you have to modify the server, just remember to run `sudo systemctl reload sussurraServer.service` to reload it
+
+## Setup link between the two
+Add a `serverConfig.js` file in the `public` folder containing 
+```
+window.ENV = {
+	"webSocketAddress": "[The addres of your API server]"
+}
+```
