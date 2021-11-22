@@ -41,7 +41,8 @@ import Lobby from "./customComponents/Lobby/Lobby";
 import { w3cwebsocket } from "websocket";
 import Match from "./customComponents/Match/Match";
 
-const websocketAddress = "ws://frisso.myqnapcloud.com:1111";
+console.log(window.Config);
+const websocketAddress = window.ENV.webSocketAddress;
 
 class App extends React.Component {
 	constructor(props) {
