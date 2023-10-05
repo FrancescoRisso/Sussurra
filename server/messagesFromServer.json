@@ -50,12 +50,16 @@
 	{
 		"type": "cardDiscard",
 		"player": "",
-		"card": 0
+		"card": 0,
+		"gameOver": false,
+		"lastCard": false
 	},
 
 	{
 		"type": "playerMove",
 		"what": "discard | playerSwitch | deckSwitch",
+		"nowPlaying": "",
+		"gameOver": false,
 		"data (case playerSwitch)": [
 			{
 				"player": 0,

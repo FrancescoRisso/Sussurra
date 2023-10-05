@@ -248,14 +248,6 @@ class Match extends React.Component {
 							// Update deck and discarded
 							state.discarded.unshift(state.deck.shift());
 
-							// Calculate next player to play
-							const players = state.players.filter((x) => x !== "");
-							const playerPlaying = players[(players.indexOf(state.playerPlaying) + 1) % players.length];
-
-							// Check if match is over
-							const matchOver =
-								state.lastPlayerToPlay !== null && playerPlaying === state.lastPlayerToPlay.name;
-
 							// Check if deck is empty
 							if (state.deck.length === 0 && this.context.myName === state.firstPlayer)
 								this.context.websocket.send(
@@ -265,10 +257,10 @@ class Match extends React.Component {
 								discarded: state.discarded,
 								deck: state.deck,
 								deckCardVisible: false,
-								playerPlaying,
+								playerPlaying: msg.nowPlaying,
 								playerPlayingVisible: true,
 								playerCards: state.playerCards,
-								matchOver
+								matchOver: msg.gameOver
 							};
 						},
 						() => {

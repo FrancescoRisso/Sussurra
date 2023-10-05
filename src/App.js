@@ -124,6 +124,10 @@ class App extends React.Component {
 							<Route path="/resetRoom">
 								<ResetRoom />
 							</Route>
+
+							<Route >
+								<Redirect to="/login" />
+							</Route>
 						</Switch>
 					</div>
 				</Router>

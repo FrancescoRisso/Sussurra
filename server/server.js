@@ -15,11 +15,14 @@ const _ = require("underscore");
 const startGame = () => {
 	// Prepare deck and starting player
 	let deck = _.shuffle(cards);
-	let playersOrder = _.shuffle(Object.keys(players));
+	playersOrder = _.shuffle(Object.keys(players));
 
 	log("START", `Starting game with players "${playersOrder.join('", "')}" (in order)`);
 
 	matchInProgress = true;
+	playerPlaying = playersOrder[0];
+	playersDiscarded = playersOrder.map(() => 0);
+	endingPlayer = "";
 
 	// Notify that game will start
 	Object.values(players).forEach((c) => c.send(JSON.stringify({ type: "startGame" })));
@@ -111,10 +114,21 @@ const playerDisconection = (name, conn) => {
 };
 
 const playerMove = (name, what, data) => {
+	playerPlaying = playersOrder[(playersOrder.indexOf(playerPlaying) + 1) % playersOrder.length];
+
 	switch (what) {
 		case "discard":
 			log("DECK-DISCARD", `${name} is discarding the deck's card`);
-			Object.values(players).forEach((c) => c.send(JSON.stringify({ type: "playerMove", what: "discard" })));
+			Object.values(players).forEach((c) =>
+				c.send(
+					JSON.stringify({
+						type: "playerMove",
+						what: "discard",
+						nowPlaying: playerPlaying,
+						gameOver: endingPlayer === playerPlaying
+					})
+				)
+			);
 			break;
 		case "playerSwitch":
 			log(
@@ -122,13 +136,29 @@ const playerMove = (name, what, data) => {
 				`${name} is changing a card with another player ([${data[0].player}, ${data[0].card}] <=> [${data[1].player}, ${data[1].card}])`
 			);
 			Object.values(players).forEach((c) =>
-				c.send(JSON.stringify({ type: "playerMove", what: "playerSwitch", data }))
+				c.send(
+					JSON.stringify({
+						type: "playerMove",
+						what: "playerSwitch",
+						data,
+						nowPlaying: playerPlaying,
+						gameOver: endingPlayer === playerPlaying
+					})
+				)
 			);
 			break;
 		case "deckSwitch":
 			log("DECK-SWITCH", `${data.player} is switching their #${data.card} card with the one they drew out`);
 			Object.values(players).forEach((c) =>
-				c.send(JSON.stringify({ type: "playerMove", what: "deckSwitch", data }))
+				c.send(
+					JSON.stringify({
+						type: "playerMove",
+						what: "deckSwitch",
+						data,
+						nowPlaying: playerPlaying,
+						gameOver: endingPlayer === playerPlaying
+					})
+				)
 			);
 			break;
 	}
@@ -136,7 +166,22 @@ const playerMove = (name, what, data) => {
 
 const cardDiscard = (player, card) => {
 	log("HAND-DISCARD", `${player} discarded his card #${card}`);
-	Object.values(players).forEach((c) => c.send(JSON.stringify({ type: "cardDiscard", player, card })));
+
+	playersDiscarded[playersOrder.indexOf(player)]++;
+	if (playersDiscarded[playersOrder.indexOf(player)] === 4) endingPlayer = player;
+	console.log(player === endingPlayer && playerPlaying === player);
+
+	Object.values(players).forEach((c) =>
+		c.send(
+			JSON.stringify({
+				type: "cardDiscard",
+				player,
+				card,
+				lastCard: endingPlayer !== "",
+				gameOver: player === endingPlayer && playerPlaying === player
+			})
+		)
+	);
 };
 
 const outOfCards = (name) => {
@@ -254,6 +299,11 @@ log("ONLINE", `Server is online on port ${PORT}`);
 let players = {}; // { name: connection }
 let ready = {}; // { name: start } whether the player said they are ready to start
 let loginPending = []; // just list of connections
+
+let playerPlaying = "";
+let endingPlayer = "";
+let playersOrder = [];
+let playersDiscarded = [];
 
 let matchInProgress = false;
 
